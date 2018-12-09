@@ -42,11 +42,6 @@ cnn.add(conv.Convolution2D(nb_filters_2, nb_conv, nb_conv, activation="relu", bo
 cnn.add(conv.Convolution2D(nb_filters_2, nb_conv, nb_conv, activation="relu", border_mode='same'))
 cnn.add(conv.MaxPooling2D(strides=(2,2)))
 
-#cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation="relu", border_mode='same'))
-#cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation="relu", border_mode='same'))
-#cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation="relu", border_mode='same'))
-#cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation="relu", border_mode='same'))
-#cnn.add(conv.MaxPooling2D(strides=(2,2)))
 
 cnn.add(core.Flatten())
 cnn.add(core.Dropout(0.2))

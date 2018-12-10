@@ -15,6 +15,7 @@ x_test <- x_test / 255
 y_train <- to_categorical(y_train, 10)
 y_test <- to_categorical(y_test, 10)
 model <- keras_model_sequential() 
+#set nn model with 2 relu layers and 1 softmax layer
 model %>% 
   layer_dense(units = 256, activation = "relu", input_shape = c(784)) %>% 
   layer_dropout(rate = 0.4) %>% 
@@ -27,10 +28,12 @@ model %>% compile(
   optimizer = optimizer_rmsprop(),
   metrics = c("accuracy")
 )
+#train model
 history <- model %>% fit(
   x_train, y_train, 
   epochs = 30, batch_size = 128, 
   validation_split = 0.2
 )
+#evaluate model
 model %>% evaluate(x_test, y_test,verbose = 0)
 model %>% predict_classes(x_test)

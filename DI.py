@@ -18,6 +18,11 @@
 #At the same time, weight sharing also gives the convolution network tolerance to translation. So it seems that CNN is a great choice 
 #for image identification.
 
+# inconvenient:
+#Not easy to understand 
+#Can't observe the revolution in the hidden layer
+#Need a large calculate power
+
 # import the packages wich will be used 
 import pandas as pd
 import numpy as np

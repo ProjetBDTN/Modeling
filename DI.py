@@ -1,6 +1,22 @@
+######################################################################################################################################
+##                                                     Digital identification                                                       ##
+##                                                          LIU Jixiong                                                             ##
+##                                                         Version Keras                                                            ##
+######################################################################################################################################
 
-##LIU Jixiong
-##Version Keras
+# I'm using the type of RNN 
+
+#   In a convolutional neural network, a convolutional layer can have multiple different convolution kernels (also known as filters), 
+#and each convolution kernel slides over the input image and processes only a small number of images at a time. Such a convolutional 
+#layer at the input can extract the most basic features in the image.
+"
+#   Each neuron is only connected to a local area of the upper layer. The spatial size of the connection is called the receptive field 
+#of the neuron.
+# Also the current layer uses the same weight and bias for each channel's neurons in the depth direction, witch called weight sharing.
+#
+#   Local connections and weight sharing reduce the amount of parameters, greatly reducing training complexity and reducing overfitting. 
+#At the same time, weight sharing also gives the convolution network tolerance to translation. So it seems that CNN is a great choice 
+#for image identification.
 
 # import the packages wich will be used 
 import pandas as pd

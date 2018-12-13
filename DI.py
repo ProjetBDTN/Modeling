@@ -75,7 +75,7 @@ cnn.add(conv.MaxPooling2D(strides=(2,2)))
 
 cnn.add(core.Flatten())
 cnn.add(core.Dropout(0.2))
-cnn.add(core.Dense(128, activation="relu")) # 4096
+cnn.add(core.Dense(nb_filters_3, activation="relu")) # 4096
 cnn.add(core.Dense(nb_classes, activation="softmax"))
 
 #See the summary and complie the networrk
@@ -95,5 +95,5 @@ testX /= 255.0
 yPred = cnn.predict_classes(testX)
 
 # Save the prediction 
-np.savetxt('mnist-vggnet.csv', np.c_[range(1,len(yPred)+1),yPred], delimiter=',', header = 'ImageId,Label', comments = '', fmt='%d')import pandas as pd
+np.savetxt('mnist-vggnet.csv', np.c_[range(1,len(yPred)+1),yPred], delimiter=',', header = 'ImageId,Label', comments = '', fmt='%d')
 

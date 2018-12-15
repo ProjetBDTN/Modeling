@@ -1,0 +1,50 @@
+---
+title: "KNN"
+author: "Benoit Mangeard"
+date: "December 15 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library import}
+library(data.table)
+library(CORElearn)
+library(readr)
+```
+
+```{r data import}
+train <- as.data.frame(fread("train.csv"))
+train$label <- as.factor(as.character(train$label))
+test <- as.data.frame(fread("test.csv"))
+```
+
+```{r data reduce}
+## Small RAM/CPU
+train_test <- as.data.frame(train[1:5000,])
+test_test <- as.data.frame(test[1:5000,])
+```
+
+```{r model, message=FALSE, warning=FALSE, paged.print=FALSE}
+set.seed(1)
+folds <- 10
+foldIdx <- cvGen(nrow(train_test), k=folds)
+evalCore <-list()
+for (j in 1:folds) {
+  dTrain <- train_test[foldIdx!=j,]
+  dTest  <- train_test[foldIdx==j,]
+  length(dTrain)
+  modelCore <- CoreModel(label~., dTrain, model="knn")
+  predCore <- predict(modelCore, dTest)
+  evalCore[[j]] <- modelEval(modelCore, correctClass=dTest$label, predictedClass=predCore$class, predictedProb=predCore$prob)
+  destroyModels(modelCore)
+}
+```
+
+```{r plot}
+knn.core <- gatherFromList(evalCore)
+sapply(knn.core, mean)
+sapply(knn.core, sd)
+```

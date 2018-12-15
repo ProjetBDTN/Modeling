@@ -1,0 +1,46 @@
+---
+title: "Visualization"
+author: "Benoit Mangeard"
+date: "December 15 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r data import}
+library(data.table)
+train <- as.data.frame(fread("train.csv"))
+train$label <- as.factor(as.character(train$label))
+test <- as.data.frame(fread("test.csv"))
+```
+
+```{r data info}
+dim(train)
+dim(test)
+table(train$label)
+```
+
+```{r picture plot}
+rotate <- function(x) t(apply(x, 2, rev))
+m = rotate(matrix(unlist(train[40462,-1]),nrow = 28,byrow = T))
+image(m,col=grey.colors(255))
+```
+
+```{r Loop}
+library(class)
+process_time = data.frame()
+for (i in c(1, 10, 20, 50, 100)){
+  t0 <- Sys.time()
+  knn.model <- knn(train[1:i, 2:785], 
+                   test, cl = train[1:i,1], k = 3)
+  process_time = rbind(process_time,data.frame(i, Sys.time() - t0))
+}
+```
+
+
+```{r plot process time}
+plot(process_time)
+process_time
+```

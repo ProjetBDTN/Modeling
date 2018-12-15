@@ -4,7 +4,7 @@
 ##                                                         Version Keras                                                            ##
 ######################################################################################################################################
 
-# I'm using the type of RNN 
+# I'm using the type of CNN 
 
 #   In a convolutional neural network, a convolutional layer can have multiple different convolution kernels (also known as filters), 
 #and each convolution kernel slides over the input image and processes only a small number of images at a time. Such a convolutional 
